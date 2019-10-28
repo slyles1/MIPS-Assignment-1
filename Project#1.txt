@@ -1,0 +1,13 @@
+# MIPS Assignment 1
+.data
+	prompt: .asciiz "Enter your ID number: "
+	message: .asciiz "\nYour ID is "
+
+
+.text # for instructions
+main:
+	li $v0, 4 # Printing a string; system call code for printing string = 4
+	la $a0, prompt # load address of string to be printed into $a0
+	syscall
+
+
