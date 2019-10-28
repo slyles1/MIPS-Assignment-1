@@ -10,4 +10,12 @@ main:
 	la $a0, prompt # load address of string to be printed into $a0
 	syscall
 
+	li $v0, 5 # get an integer
+	syscall
 
+	move $t0, $v0 # store integer
+	
+	# Display "Your ID is"
+	li $v0, 4
+	la $a0, message
+	syscall
