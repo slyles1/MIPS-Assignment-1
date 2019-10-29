@@ -2,6 +2,7 @@
 .data
 	str: .space 32
 	message1: .asciiz "\nEnter your 10 character string"
+	newline: .asciiz "\n"
 	
 
 
@@ -17,6 +18,11 @@ main:
 	li $v0, 8
 	la $a0, str
 	li $a1, 11 # space for 11 characters
+	syscall
+	
+	# print out new line
+	li $v0, 4
+	la $a0, newline
 	syscall
 
 
