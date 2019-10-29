@@ -1,49 +1,16 @@
 # MIPS Assignment 1
 .data
-	prompt: .asciiz "Enter your Base number: "
-	message: .asciiz "\nYour Base is "
-	message1: .asciiz "\nThe end of your base is the letter S "
 	str: .space 32
-	message2: .asciiz "\nEnter your 10 character string"
+	message1: .asciiz "\nEnter your 10 character string"
+	
 
 
 .text # for instructions
 main:
-	li $v0, 4 # Printing a string and system call code for printing string
-	la $a0, prompt # load address of string to be printed into $a0
-	syscall
-
-	li $v0, 5 # get an integer
-	syscall
-
-	move $t0, $v0 # store integer
 	
-	# Display "Your Base is"
-	li $v0, 4
-	la $a0, message
-	syscall
-
-	# Print result in $t0
-	li $v0, 1
-	move $a0, $t0
-	syscall
-
-	# base - 10
-	li $t1, 10
-	sub $t0, $t0, $t1
-	
+	# prints message1
 	li $v0, 4
 	la $a0, message1
-	syscall
-	
-	# Print result in $t0 (the ending nth letter of the base)
-	li $v0, 1
-	move $a0, $t0
-	syscall
-	
-	# prints message2
-	li $v0, 4
-	la $a0, message2
 	syscall
 	
 	# read a string to operate on
@@ -51,13 +18,7 @@ main:
 	la $a0, str
 	li $a1, 11 # space for 11 characters
 	syscall
-	
-	li $t1, 10 # initialize register to 1
-	li $t2, 0 # initialize byte number to 4
-	for_loop:
-	BLT $t0, 1, exit # Branch less than 10 < 1
-	lb $t3, $t2(str) # load byte of string 
-	
+
 
 	exit:
 	li $v0, 0
