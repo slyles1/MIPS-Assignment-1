@@ -2,7 +2,8 @@
 .data
 	prompt: .asciiz "Enter your Base number: "
 	message: .asciiz "\nYour Base is "
-	message1: .asciiz "\nThe end of your base is the nth letter"
+	message1: .asciiz "\nThe end of your base is the nth letter "
+	alph: .space 32
 
 
 .text # for instructions
@@ -33,6 +34,12 @@ main:
 	li $v0, 4
 	la $a0, message1
 	syscall
+	
+	# Print result in $t0 (the ending nth letter of the base)
+	li $v0, 1
+	move $a0, $t0
+	syscall
+	
 
 
 	# Exit call
