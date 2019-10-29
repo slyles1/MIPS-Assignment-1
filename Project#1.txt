@@ -3,8 +3,6 @@
 	str: .space 32
 	message1: .asciiz "\nEnter your 10 character string"
 	newline: .asciiz "\n"
-	
-
 
 .text # for instructions
 main:
@@ -26,10 +24,16 @@ main:
 	syscall
 	
 	# print out str
-	li $v0, 4
-	la $a0, str
-	syscall
+	li $v0, 4        # system call code for print_str
+    la $a0, str      # address of string to print
+    syscall
+	
+	move $t7, $a0 # moves string into $t7 register
 
+	# print out new line
+	li $v0, 4
+	la $a0, newline
+	syscall
 
 	exit:
 	li $v0, 0
