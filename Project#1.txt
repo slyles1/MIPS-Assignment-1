@@ -2,8 +2,9 @@
 .data
 	prompt: .asciiz "Enter your Base number: "
 	message: .asciiz "\nYour Base is "
-	message1: .asciiz "\nThe end of your base is the nth letter "
-	alph: .space 32
+	message1: .asciiz "\nThe end of your base is the nth letter R "
+	str: .space 32
+	message2: .asciiz "\nEnter your 10 character string"
 
 
 .text # for instructions
@@ -40,6 +41,16 @@ main:
 	move $a0, $t0
 	syscall
 	
+	# prints message2
+	li $v0, 4
+	la $a0, message2
+	syscall
+	
+	# read a string to operate on
+	li $v0, 8
+	la $a0, str
+	li $a1, 11 # space for 11 characters
+	syscall
 
 
 	# Exit call
