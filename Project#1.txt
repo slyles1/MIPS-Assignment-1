@@ -2,7 +2,7 @@
 .data
 	prompt: .asciiz "Enter your Base number: "
 	message: .asciiz "\nYour Base is "
-	message1: .asciiz "\nThe end of your base is the nth letter R "
+	message1: .asciiz "\nThe end of your base is the letter S "
 	str: .space 32
 	message2: .asciiz "\nEnter your 10 character string"
 
@@ -51,8 +51,14 @@ main:
 	la $a0, str
 	li $a1, 11 # space for 11 characters
 	syscall
+	
+	li $t1, 10 # initialize register to 1
+	li $t2, 0 # initialize byte number to 4
+	for_loop:
+	BLT $t0, 1, exit # Branch less than 10 < 1
+	lb $t3, $t2(str) # load byte of string 
+	
 
-
-	# Exit call
+	exit:
 	li $v0, 0
 	syscall
