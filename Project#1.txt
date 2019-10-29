@@ -6,7 +6,7 @@
 
 .text # for instructions
 main:
-	li $v0, 4 # Printing a string; system call code for printing string = 4
+	li $v0, 4 # Printing a string and system call code for printing string
 	la $a0, prompt # load address of string to be printed into $a0
 	syscall
 
@@ -18,4 +18,13 @@ main:
 	# Display "Your ID is"
 	li $v0, 4
 	la $a0, message
+	syscall
+
+	# Print result in $t0
+	li $v0, 1
+	move $a0, $t0
+	syscall
+
+	# Exit call
+	li $v0, 0
 	syscall
