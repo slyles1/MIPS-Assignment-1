@@ -24,6 +24,11 @@ main:
 	li $v0, 4
 	la $a0, newline
 	syscall
+	
+	# print out str
+	li $v0, 4
+	la $a0, str
+	syscall
 
 
 	exit:
