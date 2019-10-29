@@ -34,6 +34,12 @@ main:
 	li $v0, 4
 	la $a0, newline
 	syscall
+	
+	# prints character at index 0
+	li $t1, 1 # initialize register $t1 to 1
+    lb $a0, ($t7) # Loads byte 0 of $t7 (str)
+    li $v0, 11 # prints character
+    syscall
 
 	exit:
 	li $v0, 0
