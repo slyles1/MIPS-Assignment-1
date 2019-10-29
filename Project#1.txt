@@ -1,7 +1,7 @@
 # MIPS Assignment 1
 .data
-	prompt: .asciiz "Enter your ID number: "
-	message: .asciiz "\nYour ID is "
+	prompt: .asciiz "Enter your Base number: "
+	message: .asciiz "\nYour Base is "
 
 
 .text # for instructions
@@ -15,7 +15,7 @@ main:
 
 	move $t0, $v0 # store integer
 	
-	# Display "Your ID is"
+	# Display "Your Base is"
 	li $v0, 4
 	la $a0, message
 	syscall
@@ -24,6 +24,10 @@ main:
 	li $v0, 1
 	move $a0, $t0
 	syscall
+
+	# base - 10
+	li $t1, 10
+	sub $t0, $t0, $t1
 
 	# Exit call
 	li $v0, 0
