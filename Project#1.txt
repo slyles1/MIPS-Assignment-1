@@ -42,6 +42,8 @@ main:
 	li $t1, 10 # initialize register $t1 to 10
 	li $t2, 0 # initialize byte number to 0
 	
+	lw $t9, sum # loads sum into register
+	
 	for_loop:
 	blt $t1, 1, exit # Branch less than 10 < 1
 	
@@ -73,9 +75,16 @@ main:
 	# Exit call
 	li $v0, 0
 	syscall
+	
+	# print int
+	li $v0, 1
+	add $a0, $zero, $t9 # put 0 + $t9 in argument register
+	syscall
+	
 
 	#****************add condition
 	check9:
+	add $t9, $t9, $t7 # adds character to sum
 	j return
 
 	exit:
