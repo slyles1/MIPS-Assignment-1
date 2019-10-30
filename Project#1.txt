@@ -56,17 +56,9 @@ main:
     syscall
     
     # Algorithm for checking characters
-    li $t0, 0
-    bge $a0, $t0, check9 # character index of string > 0 if true run check9
-    
-    # false
-    # print new line and do addition
-    
-    # print out message2
-	li $v0, 4
-	la $a0, message2
-	syscall
-    
+    # check space
+    li $t0, 20 # ASCII space
+    bne $a0, $20, check0 # character index of string != 20 if true run check0
     
     return: # resumes after checking
     
@@ -82,6 +74,19 @@ main:
 	li $v0, 0
 	syscall
 	
+	check0:
+    li $t0, 0
+    bge $a0, $t0, check9 # character index of string > 0 if true run check9
+    
+    # false
+    # print new line and do addition
+    
+    # print out message2
+	li $v0, 4
+	la $a0, message2
+	syscall
+    
+    j return
 	
 	check9:
 	li $t0, 65 #ASCII A
@@ -222,7 +227,6 @@ main:
 	
 	j return
 	
-
 	exit:
 	li $v0, 0
 	syscall
