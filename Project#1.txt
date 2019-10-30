@@ -164,13 +164,24 @@ main:
 
 	
 	checkaa: # check a
-	li $t0, 97 # ASCII after s
+	li $t0, 97 # ASCII a
 	bge $a0, $t0, checkss # character index of string >= 97 if true run checkss
 	
 	# False
 	# Conversion and summation
 	sub $t9, $a0, 87 # a - 87 is 10 in decimal
 	add $k0, $k0, $t9 # adds character to total sum
+	
+	# print out colon
+	li $v0, 4
+	la $a0, colon
+	syscall
+	
+	
+	# print int
+	li $v0, 1
+	add $a0, $zero, $k0 # put 0 + $k0 in argument register
+	syscall
 	
 	j return
 	
