@@ -43,15 +43,32 @@ main:
 	for_loop:
 	blt $t1, 1, exit # Branch less than 10 < 1
 	
-    lb $a0, ($t7) # Loads byte 0 of $t7 (str)
+    lbu $a0, 0($t7) # Loads byte 0 of $t7 (str)
     li $v0, 11 # prints character
     syscall
     
+    # Algorithm for checking characters
+    li $t0, 0
+    sgeu $s0, $t7, $t0 # set greater than equal unsigned $t7 0 >= 0; true
+    # $s0 is 1
+    bne $s0, $zero, 9_check
+    
+    return: # resumes after checking
+    
     # iteration
+    addi $t7, 1 # next char
 	add $t2, $t2, 1 # Adds 1 to $t2 to get the next character
 	sub $t1, $t1, 1 # --10
 	
 	j for_loop
+	
+	# Exit call
+	li $v0, 0
+	syscall
+	
+	9_check:
+	
+	j return
 
 
 	exit:
