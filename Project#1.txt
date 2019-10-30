@@ -209,7 +209,16 @@ main:
 	add $a0, $zero, $k0 # put 0 + $k0 in argument register
 	syscall
 	
+	# print out new line
+	li $v0, 4
+	la $a0, newline
+	syscall
+	
 	outside: # outside
+	# print out message3
+	li $v0, 4
+	la $a0, message3
+	syscall
 	
 	j return
 	
