@@ -72,19 +72,28 @@ main:
 	
 	j for_loop
 	
+	
 	# Exit call
 	li $v0, 0
 	syscall
+	
+
+	#****************add condition
+	check9:
+	add $t9, $zero, $t7 # adds character to sum
 	
 	# print int
 	li $v0, 1
 	add $a0, $zero, $t9 # put 0 + $t9 in argument register
 	syscall
 	
+	# print out new line
+	li $v0, 4
+	la $a0, newline
+	syscall
 
-	#****************add condition
-	check9:
-	add $t9, $t9, $t7 # adds character to sum
+	
+	
 	j return
 
 	exit:
