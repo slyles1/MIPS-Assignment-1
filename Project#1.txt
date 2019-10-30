@@ -6,6 +6,8 @@
 	message2: .asciiz " is not part of the base.\n"
 	sum: .word 0
 	colon: .asciiz ":"
+	
+	#message3: .asciiz " inside check a\n"
 
 .text # for instructions
 main:
@@ -83,7 +85,7 @@ main:
 	
 	check9:
 	li $t0, 65 #ASCII A
-	bge $a0, $t0, checkA # character index of string > 64 if true run checkA
+	bge $a0, $t0, checkA # character index of string >= 64 if true run checkA
 	
 	# False
 	# Conversion and summation
@@ -109,7 +111,7 @@ main:
 	
 	checkA:
 	li $t0, 84 #ASCII after S
-	bge $a0, $t0, checkS # character index of string > 84 if true run checkA
+	bge $a0, $t0, checkS # character index of string >= 84 if true run checkA
 	
 	# False
 	# Conversion and summation
@@ -135,12 +137,21 @@ main:
 	j return
 	
 	checkS:
-	
+	li $t0, 97 #ASCII a
+	bge $a0, $t0, checka # character index of string >= 97 if true run checkA
 	
 	# False
 	# Conversion and summation
 	sub $t9, $a0, 55 # A - 55 is 10 in decimal
 	add $k0, $k0, $t9 # adds character to total sum
+	
+	j return
+	
+	checka: # check a
+	
+	j return
+	
+	checks: # check s
 	
 	j return
 
