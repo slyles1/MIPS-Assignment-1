@@ -54,7 +54,6 @@ main:
     syscall
     
     # Algorithm for checking characters
-    #li $t0, 64
     li $t0, 0
     bge $a0, $t0, check9 # character index of string > 0 if true run check9
     
@@ -83,8 +82,13 @@ main:
 	
 	
 	check9:
+	li $t0, 64 #ASCII before A
+	bge $a0, $t0, checkA # character index of string > 64 if true run checkA
+	
+	# False
+	# Conversion and summation
 	sub $t9, $a0, 48 # 48 - 48 is 0 in decimal
-	add $k0, $k0, $t9 # adds character to total sum
+	add $k0, $k0, $t9 # adds character to total sum $k0
 	
 	# print out colon
 	li $v0, 4
