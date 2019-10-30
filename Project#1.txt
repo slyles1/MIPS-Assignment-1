@@ -150,8 +150,18 @@ main:
 	la $a0, colon
 	syscall
 	
+	# print int
+	li $v0, 1
+	add $a0, $zero, $k0 # put 0 + $k0 in argument register
+	syscall
+	
+	# print out new line
+	li $v0, 4
+	la $a0, newline
+	syscall
+	
 	j return
-	#******************HERE
+
 	
 	checkaa: # check a
 	li $t0, 97 # ASCII after s
