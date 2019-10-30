@@ -3,6 +3,8 @@
 	str: .space 32
 	message1: .asciiz "\nEnter your 10 character string"
 	newline: .asciiz "\n"
+	message2: .asciiz " is not part of the base.\n"
+	sum: .word 0
 
 .text # for instructions
 main:
@@ -51,7 +53,13 @@ main:
     li $t0, 0
     sgeu $s0, $t7, $t0 # set greater than equal unsigned $t7 0 >= 0; true
     # $s0 is 1
-    bne $s0, $zero, 9_check
+    bne $s0, $zero, check9
+    
+    # print out message2
+	li $v0, 4
+	la $a0, message2
+	syscall
+    
     
     return: # resumes after checking
     
@@ -65,11 +73,10 @@ main:
 	# Exit call
 	li $v0, 0
 	syscall
-	
-	9_check:
-	
-	j return
 
+	#****************add condition
+	check9:
+	j return
 
 	exit:
 	li $v0, 0
