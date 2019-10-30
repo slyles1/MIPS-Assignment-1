@@ -45,6 +45,7 @@ main:
 	
 	lw $t9, sum # loads sum into register
 	
+	li $k0, 0 # puts zero in total sum
 	for_loop:
 	blt $t1, 1, exit # Branch less than 10 < 1
 	
@@ -55,6 +56,9 @@ main:
     # Algorithm for checking characters
     li $t0, 64
     bge $a0, $t0, check9 # character index of string > 64 if true run check9
+    
+    # false
+    # print new line and do addition
     
     # print out message2
 	li $v0, 4
@@ -76,11 +80,14 @@ main:
 	li $v0, 0
 	syscall
 	
-
 	
 	check9:
+	
+	j return
+	
+	checkA:
 	sub $t9, $a0, 55 # A - 55 is 10 in decimal
-	add $t9, $zero, $t9 # adds character to sum
+	add $k0, $k0, $t9 # adds character to total sum
 	
 	# print out colon
 	li $v0, 4
@@ -90,15 +97,17 @@ main:
 	
 	# print int
 	li $v0, 1
-	add $a0, $zero, $t9 # put 0 + $t9 in argument register
+	add $a0, $zero, $k0 # put 0 + $k0 in argument register
 	syscall
 	
 	# print out new line
 	li $v0, 4
 	la $a0, newline
 	syscall
-
 	
+	j return
+	
+	checkS:
 	
 	j return
 
