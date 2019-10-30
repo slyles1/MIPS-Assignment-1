@@ -35,11 +35,24 @@ main:
 	la $a0, newline
 	syscall
 	
+	
 	# prints character at index 0
-	li $t1, 1 # initialize register $t1 to 1
+	li $t1, 10 # initialize register $t1 to 10
+	li $t2, 0 # initialize byte number to 0
+	
+	for_loop:
+	blt $t1, 1, exit # Branch less than 10 < 1
+	
     lb $a0, ($t7) # Loads byte 0 of $t7 (str)
     li $v0, 11 # prints character
     syscall
+    
+    # iteration
+	add $t2, $t2, 1 # Adds 1 to $t2 to get the next character
+	sub $t1, $t1, 1 # --10
+	
+	j for_loop
+
 
 	exit:
 	li $v0, 0
