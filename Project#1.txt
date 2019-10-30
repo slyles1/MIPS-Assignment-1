@@ -7,7 +7,7 @@
 	sum: .word 0
 	colon: .asciiz ":"
 	
-	#message3: .asciiz " inside check a\n"
+	message3: .asciiz " inside the outside label\n"
 
 .text # for instructions
 main:
@@ -137,8 +137,8 @@ main:
 	j return
 	
 	checkS:
-	li $t0, 97 #ASCII a
-	bge $a0, $t0, checka # character index of string >= 97 if true run checkA
+	li $t0, 98 # ASCII a
+	bge $a0, $t0, checkaa # character index of string >= 97 if true run checkA
 	
 	# False
 	# Conversion and summation
@@ -147,7 +147,9 @@ main:
 	
 	j return
 	
-	checka: # check a
+	checkaa: # check a
+	li $t0, 115 # ASCII after s
+	bge $a0, $t0, checkss # character index of string >= 115 if true run checkA
 	
 	# False
 	# Conversion and summation
@@ -156,12 +158,20 @@ main:
 	
 	j return
 	
-	checks: # check s
+	
+	# create outside label
+	checkss: # check s
+	
+	# print out message3
+	li $v0, 4
+	la $a0, message3
+	syscall
+	
 	
 	# False
 	# Conversion and summation
-	sub $t9, $a0, 87 # a - 87 is 10 in decimal
-	add $k0, $k0, $t9 # adds character to total sum
+	#sub $t9, $a0, 87 # a - 87 is 10 in decimal
+	#add $k0, $k0, $t9 # adds character to total sum
 	
 	j return
 
