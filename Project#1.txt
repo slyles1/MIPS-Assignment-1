@@ -149,9 +149,19 @@ main:
 	
 	checka: # check a
 	
+	# False
+	# Conversion and summation
+	sub $t9, $a0, 87 # a - 87 is 10 in decimal
+	add $k0, $k0, $t9 # adds character to total sum
+	
 	j return
 	
 	checks: # check s
+	
+	# False
+	# Conversion and summation
+	sub $t9, $a0, 87 # a - 87 is 10 in decimal
+	add $k0, $k0, $t9 # adds character to total sum
 	
 	j return
 
