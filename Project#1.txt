@@ -163,7 +163,7 @@ main:
 	j return
 
 	
-	checkaa: # check a
+	checkaa: # check a character
 	li $t0, 97 # ASCII a
 	bge $a0, $t0, checkss # character index of string >= 97 if true run checkss
 	
@@ -183,24 +183,26 @@ main:
 	add $a0, $zero, $k0 # put 0 + $k0 in argument register
 	syscall
 	
-	j return
-	
-	
-	# create outside label
-	checkss: # check s
-	
-	# print out message3
+	# print out new line
 	li $v0, 4
-	la $a0, message3
+	la $a0, newline
 	syscall
 	
+	j return
+	
+	checkss: # check s character
+	li $t0, 116 # ASCII after s
+	bge $a0, $t0, outside # character index of string >= 116 if true run outside
 	
 	# False
 	# Conversion and summation
 	#sub $t9, $a0, 87 # a - 87 is 10 in decimal
 	#add $k0, $k0, $t9 # adds character to total sum
 	
+	outside: # outside
+	
 	j return
+	
 
 	exit:
 	li $v0, 0
