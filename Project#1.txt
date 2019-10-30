@@ -82,6 +82,12 @@ main:
 	
 	
 	check9:
+	add $k0, $k0, $t9 # adds character to total sum
+	
+	# print out colon
+	li $v0, 4
+	la $a0, colon
+	syscall
 	
 	j return
 	
