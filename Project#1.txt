@@ -79,12 +79,18 @@ main:
 	
 	checkA:
 	li $t0, 84 #ASCII after S
-	bge $a0, $t0, checkS # character index of string >= 84 if true run checkA
+	bge $a0, $t0, betweenSanda # character index of string >= 84 if true run betweenSanda
 	
 	# False
 	# Conversion and summation
 	sub $t9, $a0, 55 # A - 55 is 10 in decimal
 	add $k0, $k0, $t9 # adds character to total sum
+	
+	j return
+	
+	betweenSanda:
+	li $t0, 97 #ASCII a
+	bge $a0, $t0, checkS # character index of string >= 97 if true run checkA
 	
 	j return
 	
