@@ -8,6 +8,7 @@
 	colon: .asciiz ":"
 	
 	message3: .asciiz " inside the outside label\n"
+	messagespace: .asciiz " 20 = 20\n"
 
 .text # for instructions
 main:
@@ -57,8 +58,9 @@ main:
     
     # Algorithm for checking characters
     # check space
-    li $t0, 20 # ASCII space
-    bne $a0, $20, check0 # character index of string != 20 if true run check0
+    li $t0, 47 # ASCII / before 0
+    blt $a0, $t0, outside # character index of string <= 47 if true run outside
+    j check0
     
     return: # resumes after checking
     
