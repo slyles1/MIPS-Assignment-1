@@ -32,8 +32,8 @@ main:
 	blt $t1, 1, exit # Branch less than 10 < 1
 	
     lbu $a0, 0($t7) # Loads byte 0 of $t7 (str)
-    li $v0, 11 # prints character
-    syscall
+    #li $v0, 11 # prints character
+    #syscall
     
     # Algorithm for checking characters
     # check space
@@ -96,11 +96,11 @@ main:
 	
 	checkS:
 	li $t0, 115 # ASCII S
-	bge $a0, $t0, checkaa # character index of string >= 98 if true run checkA
+	bge $a0, $t0, checkaa # character index of string >= 115 if true run checkA
 	
 	# False
 	# Conversion and summation
-	sub $t9, $a0, 55 # A - 55 is 10 in decimal
+	sub $t9, $a0, 87 # A - 87 is 10 in decimal
 	add $k0, $k0, $t9 # adds character to total sum
 
 	j return
@@ -123,8 +123,8 @@ main:
 	
 	# False
 	# Conversion and summation
-	#sub $t9, $a0, 87 # a - 87 is 10 in decimal
-	#add $k0, $k0, $t9 # adds character to total sum
+	sub $t9, $a0, 87 # a - 87 is 10 in decimal
+	add $k0, $k0, $t9 # adds character to total sum
 	
 	j return
 
