@@ -1,8 +1,8 @@
 # MIPS Assignment 1
 .data
 	str: .space 32
-	message: .asciiz "Input:"
-	message1: .asciiz "\nOutput:"
+	message: .asciiz "Input: "
+	message1: .asciiz "\nOutput: "
 	sum: .word 0
 
 .text # for instructions
@@ -133,6 +133,12 @@ main:
 	j return
 	
 	exit:
+	
+	# prints message1
+	li $v0, 4
+	la $a0, message1
+	syscall
+	
 	# print int
 	li $v0, 1
 	add $a0, $zero, $k0 # put 0 + $k0 in argument register
