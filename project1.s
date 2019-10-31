@@ -1,17 +1,17 @@
 # MIPS Assignment 1
 .data
 	str: .space 32
-	message: .asciiz "Input: "
-	message1: .asciiz "\nOutput: "
+	#message: .asciiz "Input: "
+	#message1: .asciiz "\nOutput: "
 	sum: .word 0
 
 .text # for instructions
 main:
 	
 	# prints message
-	li $v0, 4
-	la $a0, message
-	syscall
+	#li $v0, 4
+	#la $a0, message
+	#syscall
 	
 	# read a string to operate on
 	li $v0, 8
@@ -135,9 +135,9 @@ main:
 	exit:
 	
 	# prints message1
-	li $v0, 4
-	la $a0, message1
-	syscall
+	#li $v0, 4
+	#la $a0, message1
+	#syscall
 	
 	# print int
 	li $v0, 1
