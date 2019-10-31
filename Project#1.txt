@@ -38,7 +38,7 @@ main:
     # Algorithm for checking characters
     # check space
     li $t0, 48 # ASCII 0
-    blt $a0, $t0, outside # character index of string <= 47 if true run outside
+    blt $a0, $t0, outside # character index of string <= 48 if true run outside
     j check0
     
     return: # resumes after checking
@@ -58,19 +58,22 @@ main:
     li $t0, 0
     bge $a0, $t0, check9 # character index of string > 0 if true run check9
     
-    # false
-    # print new line and do addition
-    
     j return
 	
 	check9:
-	li $t0, 65 #ASCII A
-	bge $a0, $t0, checkA # character index of string >= 64 if true run checkA
+	li $t0, 57 #ASCII A
+	bge $a0, $t0, between9andA # character index of string >= 57f if true run checkA
 	
 	# False
 	# Conversion and summation
 	sub $t9, $a0, 48 # 48 - 48 is 0 in decimal
 	add $k0, $k0, $t9 # adds character to total sum $k0
+	
+	j return
+	
+	between9andA:
+	li $t0, 65 #ASCII A
+	bge $a0, $t0, checkA # character index of string >= 65 if true run checkA
 	
 	j return
 	
