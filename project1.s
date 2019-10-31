@@ -78,8 +78,8 @@ main:
 	j return
 	
 	checkA:
-	li $t0, 84 #ASCII after S
-	bge $a0, $t0, betweenSanda # character index of string >= 84 if true run betweenSanda
+	li $t0, 83 #ASCII after R
+	bge $a0, $t0, betweenRanda # character index of string >= 83 if true run betweenRanda
 	
 	# False
 	# Conversion and summation
@@ -88,15 +88,15 @@ main:
 	
 	j return
 	
-	betweenSanda:
+	betweenRanda:
 	li $t0, 97 #ASCII a
-	bge $a0, $t0, checkS # character index of string >= 97 if true run checkA
+	bge $a0, $t0, checkR # character index of string >= 97 if true run checkR
 	
 	j return
 	
-	checkS:
-	li $t0, 115 # ASCII S
-	bge $a0, $t0, checkaa # character index of string >= 115 if true run checkA
+	checkR:
+	li $t0, 115 # ASCII R
+	bge $a0, $t0, checkaa # character index of string >= 115 if true run checkaa
 	
 	# False
 	# Conversion and summation
@@ -108,7 +108,7 @@ main:
 	
 	checkaa: # check a character
 	li $t0, 97 # ASCII a
-	bge $a0, $t0, checkss # character index of string >= 97 if true run checkss
+	bge $a0, $t0, checkrr # character index of string >= 97 if true run checkrr
 	
 	# False
 	# Conversion and summation
@@ -117,9 +117,9 @@ main:
 
 	j return
 	
-	checkss: # check s character
-	li $t0, 116 # ASCII after s
-	bge $a0, $t0, outside # character index of string >= 116 if true run outside
+	checkrr: # check r character
+	li $t0, 115 # ASCII after r
+	bge $a0, $t0, outside # character index of string >= 115 if true run outside
 	
 	# False
 	# Conversion and summation
