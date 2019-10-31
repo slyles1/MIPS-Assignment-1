@@ -1,21 +1,16 @@
 # MIPS Assignment 1
 .data
 	str: .space 32
-	message1: .asciiz "\nEnter your 10 character string"
-	newline: .asciiz "\n"
-	message2: .asciiz " is not part of the base.\n"
+	message: .asciiz "Input:"
+	message1: .asciiz "\nOutput:"
 	sum: .word 0
-	colon: .asciiz ":"
-	
-	message3: .asciiz " inside the outside label\n"
-	messagespace: .asciiz " 20 = 20\n"
 
 .text # for instructions
 main:
 	
-	# prints message1
+	# prints message
 	li $v0, 4
-	la $a0, message1
+	la $a0, message
 	syscall
 	
 	# read a string to operate on
@@ -24,23 +19,7 @@ main:
 	li $a1, 11 # space for 11 characters
 	syscall
 	
-	# print out new line
-	li $v0, 4
-	la $a0, newline
-	syscall
-	
-	# print out str
-	li $v0, 4        # system call code for print_str
-    la $a0, str      # address of string to print
-    syscall
-	
 	move $t7, $a0 # moves string into $t7 register
-
-	# print out new line
-	li $v0, 4
-	la $a0, newline
-	syscall
-	
 	
 	# prints character at index 0
 	li $t1, 10 # initialize register $t1 to 10
@@ -58,7 +37,7 @@ main:
     
     # Algorithm for checking characters
     # check space
-    li $t0, 47 # ASCII / before 0
+    li $t0, 48 # ASCII 0
     blt $a0, $t0, outside # character index of string <= 47 if true run outside
     j check0
     
@@ -71,7 +50,6 @@ main:
 	
 	j for_loop
 	
-	
 	# Exit call
 	li $v0, 0
 	syscall
@@ -82,11 +60,6 @@ main:
     
     # false
     # print new line and do addition
-    
-    # print out message2
-	li $v0, 4
-	la $a0, message2
-	syscall
     
     j return
 	
@@ -99,21 +72,6 @@ main:
 	sub $t9, $a0, 48 # 48 - 48 is 0 in decimal
 	add $k0, $k0, $t9 # adds character to total sum $k0
 	
-	# print out colon
-	li $v0, 4
-	la $a0, colon
-	syscall
-	
-	# print int
-	li $v0, 1
-	add $a0, $zero, $k0 # put 0 + $k0 in argument register
-	syscall
-	
-	# print out new line
-	li $v0, 4
-	la $a0, newline
-	syscall
-	
 	j return
 	
 	checkA:
@@ -125,48 +83,17 @@ main:
 	sub $t9, $a0, 55 # A - 55 is 10 in decimal
 	add $k0, $k0, $t9 # adds character to total sum
 	
-	# print out colon
-	li $v0, 4
-	la $a0, colon
-	syscall
-	
-	
-	# print int
-	li $v0, 1
-	add $a0, $zero, $k0 # put 0 + $k0 in argument register
-	syscall
-	
-	# print out new line
-	li $v0, 4
-	la $a0, newline
-	syscall
-	
 	j return
 	
 	checkS:
-	li $t0, 98 # ASCII a
-	bge $a0, $t0, checkaa # character index of string >= 97 if true run checkA
+	li $t0, 115 # ASCII S
+	bge $a0, $t0, checkaa # character index of string >= 98 if true run checkA
 	
 	# False
 	# Conversion and summation
 	sub $t9, $a0, 55 # A - 55 is 10 in decimal
 	add $k0, $k0, $t9 # adds character to total sum
-	
-	# print out colon
-	li $v0, 4
-	la $a0, colon
-	syscall
-	
-	# print int
-	li $v0, 1
-	add $a0, $zero, $k0 # put 0 + $k0 in argument register
-	syscall
-	
-	# print out new line
-	li $v0, 4
-	la $a0, newline
-	syscall
-	
+
 	j return
 
 	
@@ -178,23 +105,7 @@ main:
 	# Conversion and summation
 	sub $t9, $a0, 87 # a - 87 is 10 in decimal
 	add $k0, $k0, $t9 # adds character to total sum
-	
-	# print out colon
-	li $v0, 4
-	la $a0, colon
-	syscall
-	
-	
-	# print int
-	li $v0, 1
-	add $a0, $zero, $k0 # put 0 + $k0 in argument register
-	syscall
-	
-	# print out new line
-	li $v0, 4
-	la $a0, newline
-	syscall
-	
+
 	j return
 	
 	checkss: # check s character
@@ -206,29 +117,17 @@ main:
 	#sub $t9, $a0, 87 # a - 87 is 10 in decimal
 	#add $k0, $k0, $t9 # adds character to total sum
 	
-	# print out colon
-	li $v0, 4
-	la $a0, colon
-	syscall
+	j return
+
+	outside: # outside
 	
+	j return
+	
+	exit:
 	# print int
 	li $v0, 1
 	add $a0, $zero, $k0 # put 0 + $k0 in argument register
 	syscall
 	
-	# print out new line
-	li $v0, 4
-	la $a0, newline
-	syscall
-	
-	outside: # outside
-	# print out message3
-	li $v0, 4
-	la $a0, message3
-	syscall
-	
-	j return
-	
-	exit:
 	li $v0, 0
 	syscall
